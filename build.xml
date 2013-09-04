@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<project basedir="." default="build" name="Postgres-XC-Installer">
+    <path id="Postgres-XC-Installer.classpath">
+        <pathelement location="bin"/>
+    </path>
+    <target name="build" depends="init">
+        <javac srcdir="src" destdir="bin">
+        </javac>
+    </target>
+    <target name="init">
+        <mkdir dir="bin"/>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+</project>
