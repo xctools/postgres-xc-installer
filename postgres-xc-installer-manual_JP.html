@@ -1,0 +1,146 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<link rel="stylesheet" href="./postgres-xc-installer.css" type="text/css">
+<title>Postgres-XC-Installerマニュアル</title>
+</head>
+<body>
+
+<body bgcolor="#ffffff">
+<div class="header_title_text">Postgres-XC-Installerマニュアル</div>
+
+<h1 style="margin-top: 20px">Postgres-XC-Installerとは?</a></h1>
+<p>Postgres-XC-Installer は、Postgres-XCのインストールを簡易にするツールです。<br>
+以下の図のように、Postgres-XC-Installerを用いて複数のサーバにPostgres-XCをインストールできます。</p>
+<div style="margin-left: 40px" align="left"><img src="00-example.png"></div>
+
+<h1 style="margin-top: 20px">プラットフォーム</h1>
+<p>Postgres-XC-Installerは、以下のソフトウェアをインストールしたCentOS 6.2環境で動作します。</p>
+<ul>
+<li style="margin-left: 40px">JDK 1.7.0
+<li style="margin-left: 40px">Apache Ant 1.7.1
+</ul>
+<p>Postgres-XC-Installerは、以下のPostgres-XCバージョンで動作します。</p>
+<ul>
+<li style="margin-left: 40px">Postgres-XC 1.1
+</ul>
+
+<h1 style="margin-top: 20px">注意点</h1>
+<ul>
+<li style="margin-left: 20px">Postgres-XC-Installerはrootユーザで実行する必要があります</li>
+<li style="margin-left: 20px">サーバ(インストーラを起動するサーバ、GTMサーバ、Coordinator+Datanodeサーバ)のIPアドレスもしくはホスト名は重複してはいけません</li>
+<li style="margin-left: 20px">Coordinator+Datanodeサーバのノード名は重複してはいけません</li>
+</ul>
+
+<h1 style="margin-top: 20px">起動方法</h1>
+
+<h2>1, Postgres-XCのソースコード配置</h2>
+
+<p>Postgres-XCのソースコードをダウンロードします。ダウンロード先 : <a href="http://postgres-xc.sourceforge.net">Postgres-XC project Page.</a><br>
+TARボールを展開し、postgres-xc-installer/resource/postgres-xcにコピーします。</p>
+<pre>cp -r postgres-xc postgres-xc-installer/resource/postgres-xc</pre>
+
+<h2>2, インストーラのビルド</h2>
+
+<p>postgres-xc-installer配下でantコマンドを実行します。</p>
+<pre>cd postgres-xc-installer<br>ant -f build.xml</pre>
+
+<h2>3, インストーラの実行</h2>
+
+<p>postgres-xc-installer配下でjavaコマンドを実行します。</p>
+<pre>cd postgres-xc-installer<br>java -cp bin main/Main</pre>
+
+
+<h1 style="margin-top: 20px">実行例</h1>
+
+<p>postgres-xc-installerの実行例を以下に示します。</p>
+
+<div style="margin-left: 40px" align="left">
+
+<hr class="entry">
+<ol>
+<li>"Install Postgres-XC"を押します</li>
+</ol>
+<img src="01-example.png" class="entry">
+
+<hr class="entry">
+<ol>
+<li>Postgres-XCをインストールしたいディレクトリを入力します<br>注意: ディレクトリは既に存在してはいけません</li>
+<li>"Next"を押します</li>
+</ol>
+<img src="02-example.png" class="entry">
+
+<hr class="entry">
+<ol>
+<li>Postgres-XCのスーパーユーザとなるOSユーザを入力します<br>注意: このOSユーザは既に存在してはいけません</li>
+<li>OSユーザのログインパスワードを入力します</li>
+<li>"Next"を押します</li>
+</ol>
+<img src="03-example.png" class="entry">
+
+<hr class="entry">
+<ol>
+<li>GTMが起動するサーバのIPアドレスもしくはホスト名を入力します</li>
+<li>GTMのポート番号、ノード名、データディレクトリを入力します</li>
+<li>GTMが起動するサーバのrootユーザのログインパスワードを入力します</li>
+<li>"Next"を押します</li>
+</ol>
+<img src="04-example.png" class="entry">
+
+<hr class="entry">
+<ol>
+<li>Coordinator+Datanodeが起動するサーバの数を入力します</li>
+<li>"Next"を押します</li>
+</ol>
+<img src="05-example.png" class="entry">
+
+<hr class="entry">
+<ol>
+<li>Coordinator+Datanodeが起動するサーバのIPアドレスもしくはホスト名を入力します</li>
+<li>Coordinator+Datanodeが起動するサーバのrootユーザのログインパスワードを入力します</li>
+<li>GTM-Proxyのポート番号、ノード名、データディレクトリを入力します</li>
+<li>Coordinatorのポート番号、ノード名、データディレクトリを入力します</li>
+<li>Datanodeのポート番号、ノード名、データディレクトリを入力します</li>
+<li>(CoordinatorやDatanodeのpostgresql.confを個別のpostgresql.confにする場合、個別のpostgresql.confを入力します)</li>
+<li>Pooler Portを入力します</li>
+<li>"Next"を押します</li>
+</ol>
+<img src="06-example.png" class="entry">
+
+<hr class="entry">
+<ol>
+<li>pg_hba.confに記述するサーバ(インストーラを起動するサーバ、GTMサーバ、Coordinator+Datanodeサーバ)のIPアドレスもしくはホスト名を入力します<br>
+詳しくは<a href="http://www.postgresql.org/docs/9.2/static/auth-pg-hba-conf.html">PostgreSQL Documentation</a>をご覧ください</a>
+</li>
+<li>"Next"を押します</li>
+</ol>
+<img src="07-example.png" class="entry">
+
+<hr class="entry">
+<ol>
+<li>"Next"を押します</li>
+</ol>
+<img src="08-example.png" class="entry">
+
+<hr class="entry">
+<ol>
+<li>"Install"を押します</li>
+</ol>
+<img src="09-example.png" class="entry">
+
+</div>
+
+<h1 style="margin-top: 20px">免責事項</h1>
+<p>Postgres-XC-Installerのご利用によって生じた結果に対して、私たちは一切の責任を負わないものとします。<br>
+Postgres-XC-Installerは、テスト環境でご利用ください。</p>
+
+<hr>
+
+<div class="copyright">
+<copyright>
+Copyright (C) 2013 NTT Software Corporation.
+</div>
+
+</body>
+</html>

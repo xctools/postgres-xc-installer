@@ -1,0 +1,145 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<link rel="stylesheet" href="./postgres-xc-installer.css" type="text/css">
+<title>Postgres-XC-Installer Manual</title>
+</head>
+<body>
+
+<body bgcolor="#ffffff">
+<div class="header_title_text">Postgres-XC-Installer Manual</div>
+
+<h1 style="margin-top: 20px">What is Postgres-XC-Installer?</a></h1>
+<p>Postgres-XC-Installer makes it easy to install Postgres-XC.<br>
+You can install Postgres-XC in multi servers by using Postgres-XC-Installer like the image below.</p>
+<div style="margin-left: 40px" align="left"><img src="00-example.png"></div>
+
+<h1 style="margin-top: 20px">Platform</h1>
+<p>We support using Postgres-XC-Installer on CentOS 6.2 installed the following softwares.</p>
+<ul>
+<li style="margin-left: 40px">JDK 1.7.0
+<li style="margin-left: 40px">Apache Ant 1.7.1
+</ul>
+<p>We support using Postgres-XC-Installer with the following Postgres-XC.</p>
+<ul>
+<li style="margin-left: 40px">Postgres-XC 1.1
+</ul>
+
+<h1 style="margin-top: 20px">Notes</h1>
+<ul>
+<li style="margin-left: 20px">Only root user can run Postgres-XC-Installer</li>
+<li style="margin-left: 20px">There must not be overlap in IP Address or host name of servers(running Installer server, GTM, Coordinator+Datanode)</li>
+<li style="margin-left: 20px">There must not be overlap in Node Name of Coordinator+Datanode servers</li>
+</ul>
+
+<h1 style="margin-top: 20px">Starting Installer</h1>
+
+<h2>1, Set Postgres-XC's source code</h2>
+
+<p>Postgres-XC's source tarball can be downloaded from : <a href="http://postgres-xc.sourceforge.net">Postgres-XC project Page.</a><br>
+After extracting the source tarball, copy the source directory to postgres-xc-installer/resource/postgres-xc.</p>
+<pre>cp -r postgres-xc postgres-xc-installer/resource/postgres-xc</pre>
+
+<h2>2, Build Installer</h2>
+
+<p>Run ant in postgres-xc-installer directory.</p>
+<pre>cd postgres-xc-installer<br>ant -f build.xml</pre>
+
+<h2>3, Run Installer</h2>
+
+<p>Run java in postgres-xc-installer directory.</p>
+<pre>cd postgres-xc-installer<br>java -cp bin main/Main</pre>
+
+<h1 style="margin-top: 20px">Example</h1>
+
+<p>Here is the example of running Postgres-XC-Installer.</p>
+
+<div style="margin-left: 40px" align="left">
+
+<hr class="entry">
+<ol>
+<li>Click</li>
+</ol>
+<img src="01-example.png" class="entry">
+
+<hr class="entry">
+<ol>
+<li>Enter the directory you want to install Postgres-XC<br>Note: This directory must not exist already</li>
+<li>Click</li>
+</ol>
+<img src="02-example.png" class="entry">
+
+<hr class="entry">
+<ol>
+<li>Enter the OS user who will be Postgres-XC superuser<br>Note: This OS user must not exist already</li>
+<li>Enter the OS user's login password</li>
+<li>Click</li>
+</ol>
+<img src="03-example.png" class="entry">
+
+<hr class="entry">
+<ol>
+<li>Enter the IP Address or host name of server you want to use as GTM</li>
+<li>Enter GTM's Port, Node Name, Data Directory</li>
+<li>Enter root user's login password of server you want to use as GTM</li>
+<li>Click</li>
+</ol>
+<img src="04-example.png" class="entry">
+
+<hr class="entry">
+<ol>
+<li>Enter the number of servers you want to use as Coordinator+Datanode</li>
+<li>Click</li>
+</ol>
+<img src="05-example.png" class="entry">
+
+<hr class="entry">
+<ol>
+<li>Enter the IP Address or host name of server you want to use as Coordinator+Datanode</li>
+<li>Enter root user's login password of server you want to use as Coordinator+Datanode</li>
+<li>Enter GTM-Proxy's Port, Node Name, Data Directory</li>
+<li>Enter Coordinator's Port, Node Name, Data Directory</li>
+<li>Enter Datanode's Port, Node Name, Data Directory</li>
+<li>(If you want to change Coordinator's postgresql.conf or Datanode's postgresql.conf to your postgresql.conf, enter your postgresql.conf)</li>
+<li>Enter Pooler Port</li>
+<li>Click</li>
+</ol>
+<img src="06-example.png" class="entry">
+
+<hr class="entry">
+<ol>
+<li>Enter the IP Address or host name of servers(running installer server, GTM, Coordinator+Datanode), which is used in pg_hba.conf<br>
+If you want to know how to enter, please see <a href="http://www.postgresql.org/docs/9.2/static/auth-pg-hba-conf.html">PostgreSQL Documentation</a>
+</li>
+<li>Click</li>
+</ol>
+<img src="07-example.png" class="entry">
+
+<hr class="entry">
+<ol>
+<li>Click</li>
+</ol>
+<img src="08-example.png" class="entry">
+
+<hr class="entry">
+<ol>
+<li>Click(install start)</li>
+</ol>
+<img src="09-example.png" class="entry">
+
+</div>
+
+<h1 style="margin-top: 20px">Disclaimer</h1>
+<p>We assume no responsibility for consequence arising in connection with the use of Postgres-XC-Installer.<br>
+We hope you use Postgres-XC-Installer on the test environment(not production environment).</p>
+
+<hr>
+
+<div class="copyright">
+<copyright>
+Copyright (C) 2013 NTT Software Corporation.
+</div>
+
+</body>
+</html>
